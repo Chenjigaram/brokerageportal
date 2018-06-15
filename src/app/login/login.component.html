@@ -1,0 +1,32 @@
+<div class="row" >
+
+  <div class="col-md-5 col-lg-5 col-md-offset-5 col-lg-offset-5">
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Login</h2>
+  <form name="form" (submit)='login()'  #loginForm="ngForm">
+  <mat-form-field>
+      <input id="luserName" name="luserName" matInput placeholder="User Name" [(ngModel)]="userName" #luserName="ngModel"  required >
+    </mat-form-field>
+    <div *ngIf="luserName.invalid && (luserName.dirty || luserName.touched)">
+    <mat-error *ngIf="luserName?.errors.required">Please Provide User Name</mat-error>
+    </div>
+    <br>
+    <mat-form-field>
+      <input id="lpassword" name="lpassword" type="password" matInput placeholder="Password" [(ngModel)]="password" #lpassword="ngModel"  required >
+    </mat-form-field>
+    <div *ngIf="lpassword.invalid && (lpassword.dirty || lpassword.touched)">
+    <mat-error *ngIf="lpassword?.errors.required">Please Provide Password</mat-error>
+    </div><br>
+    <div class="button-row">
+    
+    <button mat-raised-button [disabled]="loginForm.form.invalid || loading" (ngClick)=" login()" color="primary">Login</button>
+    <a mat-raised-button color="primary" [routerLink] = "['/register']" >Register</a>
+    </div>
+    <br>
+     <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    </form>
+    </div>
+    </div>

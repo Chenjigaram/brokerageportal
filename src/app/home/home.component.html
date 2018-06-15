@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  
+  <mat-toolbar-row>
+    <span>Welcome {{userName}} !</span>
+    <span class="example-spacer"></span>
+    <a mat-raised-button color="primary" [routerLink] = "['/login']" >Logout</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Operations</h2>
+    <mat-tab-group>
+
+        <mat-tab label="View Entries">
+        
+            <app-view-entry></app-view-entry>
+           </mat-tab>
+
+    <mat-tab label="Access Tab">
+        
+       <app-access-request></app-access-request>
+      </mat-tab>
+      
+      <mat-tab label="Match Tab">
+        
+        <app-match></app-match>
+        </mat-tab>
+
+      <mat-tab label="Entry Tab">
+        
+      <h1>Testing</h1>
+      </mat-tab>
+    
+      
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

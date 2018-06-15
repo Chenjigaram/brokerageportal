@@ -1,0 +1,50 @@
+
+<div class="row">
+
+<div class="col-md-6 col-lg-6 col-md-offset-5 col-lg-offset-5">
+<br>
+<h2>Register</h2>
+<form name="form"  #signupForm="ngForm">
+  
+	<mat-form-field>
+    <input id="userName" name="userName" matInput placeholder="User Name" [(ngModel)]="user.userName" #userName="ngModel"  required >
+  </mat-form-field>
+  <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+	<mat-error *ngIf="userName?.errors.required">Please Provide User Name</mat-error></div><br>
+	<mat-form-field>
+    <input id="firstName" name="firstName" matInput placeholder="First Name" [(ngModel)]="user.firstName" #firstName="ngModel"  required >
+  </mat-form-field>
+  <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+	<mat-error *ngIf="firstName?.errors.required">Please Provide First Name</mat-error></div><br>
+	<mat-form-field>
+    <input id="lastName" name="lastName" matInput placeholder="Last Name" [(ngModel)]="user.lastName" #lastName="ngModel"   >
+  </mat-form-field><br>
+	<mat-form-field>
+    <input id="password" name="password" type="password" matInput placeholder="Password" [(ngModel)]="user.password" #password="ngModel"  required >
+  </mat-form-field>
+  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+	<mat-error *ngIf="password?.errors.required">Please Provide Password</mat-error></div><br>
+  <mat-form-field>
+    <input id="mobileNumber" name="mobileNumber" matInput placeholder="mobile Number" [(ngModel)]="user.mobileNumber" #mobileNumber="ngModel"  required >
+  </mat-form-field>
+  <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">
+	<mat-error *ngIf="mobileNumber?.errors.required">Please Provide User Name</mat-error></div><br>
+	
+	<mat-form-field>
+  <mat-select id="roles" name="roles" placeholder="Roles" [(ngModel)]="user.role" #roles="ngModel"  required>
+    <mat-option *ngFor="let role of allRoles" [value]="role">{{role.roleName}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="roles.invalid && (roles.dirty || roles.touched)">
+	<mat-error *ngIf="roles?.errors.required">Please Select Role</mat-error></div><br>
+	
+	
+	
+	<div class="button-row">
+	
+	<button mat-raised-button [disabled]="signupForm.form.invalid" (click)=" register()" color="primary">Register</button>
+	<a mat-raised-button color="primary" [routerLink] = "['login']" >Cancel</a>
+	</div>
+</form>
+</div>
+</div>

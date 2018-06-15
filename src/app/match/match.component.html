@@ -1,0 +1,139 @@
+<mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Match Operations</h2>
+    <mat-tab-group>
+    <mat-tab label="Add Match">
+        
+     
+      <div class ="container">
+        <div class="col-md-6 col-md-offset-4">
+        <br>
+      <h4>Add Match</h4>
+        <form name="form"   #matchForm="ngForm">
+        
+
+          <mat-form-field>
+            <input id="teamA" name="teamA" matInput placeholder="Team A" [(ngModel)]="match.teamA" #teamA="ngModel"  required >
+          </mat-form-field>
+          <div *ngIf="teamA.invalid && (teamA.dirty || teamA.touched)">
+          <mat-error *ngIf="teamA?.errors.required">Please Provide Team A</mat-error></div><br>
+              
+
+          <mat-form-field>
+            <input id="teamB" name="teamB" matInput placeholder="Team B" [(ngModel)]="match.teamB" #teamB="ngModel"  required >
+          </mat-form-field>
+          <div *ngIf="teamB.invalid && (teamB.dirty || teamB.touched)">
+          <mat-error *ngIf="teamB?.errors.required">Please Provide Team B</mat-error></div><br>
+              
+            <mat-form-field>
+        <input name="matchDate" #matchDate="ngModel" matInput [matDatepicker]="matchDate" placeholder="Match Date" [(ngModel)]="match.matchDate" required>
+        <mat-datepicker-toggle matSuffix [for]="matchDate"></mat-datepicker-toggle>
+        <mat-datepicker #matchDate></mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="matchDate?.invalid && (matchDate?.dirty || matchDate?.touched)">
+        <mat-error *ngIf="matchDate?.errors.required">Please Provide Match Date</mat-error></div><br>
+            
+    
+        <mat-form-field>
+          <input id="description" name="description" matInput placeholder="description" [(ngModel)]="match.description" #description="ngModel"  required >
+        </mat-form-field>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+        <mat-error *ngIf="description?.errors.required">Please Provide Reason</mat-error></div><br>
+            
+            
+           
+            
+            
+            </form>
+             <div class="button-row">
+        
+        <button mat-raised-button [disabled]="!matchForm.form.valid" (click)="addMatch()" color="primary" >Submit</button>
+        </div>
+        </div>
+        
+        </div> 
+        <br>
+      
+      </mat-tab>
+      
+      <mat-tab label="Update Match">
+        
+        <table class="table">
+          <tr>
+            <td>
+              <mat-form-field>
+                <mat-select id="matchId" name="matchId" placeholder="Roles" [(ngModel)]="matchId" #matchIds="ngModel"  required>
+                  <mat-option *ngFor="let match of allMatches" [value]="match.matchId">{{match.description}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              </td>
+              <td><br></td>
+           <td>
+            <button mat-raised-button [disabled]="matchIds.invalid" (click)="getMatch()" color="primary" >Get</button>
+          
+           </td>
+          </tr>
+        </table>
+
+
+
+     
+      <div class ="container" *ngIf="updateMatch.matchId">
+        <div class="col-md-6 col-md-offset-4">
+        <br>
+      <h4>Update Match</h4>
+        <form name="form"   #matchFormA="ngForm">
+        
+
+          <mat-form-field>
+            <input id="teamA" name="teamA" matInput placeholder="Team A" [(ngModel)]="updateMatch.teamA" #teamA="ngModel"  required >
+          </mat-form-field>
+          <div *ngIf="teamA.invalid && (teamA.dirty || teamA.touched)">
+          <mat-error *ngIf="teamA?.errors.required">Please Provide Team A</mat-error></div><br>
+              
+
+          <mat-form-field>
+            <input id="teamB" name="teamB" matInput placeholder="Team B" [(ngModel)]="updateMatch.teamB" #teamB="ngModel"  required >
+          </mat-form-field>
+          <div *ngIf="teamB.invalid && (teamB.dirty || teamB.touched)">
+          <mat-error *ngIf="teamB?.errors.required">Please Provide Team B</mat-error></div><br>
+              
+            <mat-form-field>
+        <input name="matchDate" #matchDate="ngModel" matInput [matDatepicker]="matchDate" placeholder="Match Date" [(ngModel)]="updateMatch.matchDate" required>
+        <mat-datepicker-toggle matSuffix [for]="matchDate"></mat-datepicker-toggle>
+        <mat-datepicker #matchDate></mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="matchDate?.invalid && (matchDate?.dirty || matchDate?.touched)">
+        <mat-error *ngIf="matchDate?.errors.required">Please Provide Match Date</mat-error></div><br>
+            
+    
+        <mat-form-field>
+          <input id="description" name="description" matInput placeholder="description" [(ngModel)]="updateMatch.description" #description="ngModel"  required >
+        </mat-form-field>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)">
+        <mat-error *ngIf="description?.errors.required">Please Provide Reason</mat-error></div><br>
+            
+        <mat-form-field>
+          <input id="matchWinner" name="matchWinner" matInput placeholder="matchWinner" [(ngModel)]="updateMatch.matchWinner" #matchWinner="ngModel"  required >
+        </mat-form-field>
+        <div *ngIf="matchWinner.invalid && (matchWinner.dirty || matchWinner.touched)">
+        <mat-error *ngIf="matchWinner?.errors.required">Please Provide Reason</mat-error></div><br>
+            
+           
+            
+            
+            </form>
+             <div class="button-row">
+        
+        <button mat-raised-button [disabled]="!matchFormA.form.valid" (click)="updateMatches()" color="primary" >Update</button>
+        </div>
+        </div>
+        
+        </div> 
+        <br>
+
+
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

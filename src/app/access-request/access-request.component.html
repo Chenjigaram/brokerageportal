@@ -1,0 +1,44 @@
+
+<div class="" >
+
+  <mat-table [dataSource]="matreqUsers" matSort>
+
+    <!-- first name Column -->
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+    </ng-container>
+
+    <!-- userName Column -->
+    <ng-container matColumnDef="userName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> <b>{{row.userName}}</b></mat-cell>
+    </ng-container>
+
+    <!-- empId  Column -->
+    <ng-container matColumnDef="userId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> User ID </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.userId}} </mat-cell>
+    </ng-container>
+
+    <!-- accountStatus Column -->
+    <ng-container matColumnDef="accountStatus">
+      <mat-header-cell *matHeaderCellDef> Accept/Reject </mat-header-cell>
+      <mat-cell *matCellDef="let row"> 
+      
+      <button mat-raised-button color="primary"  (click)="openDialog(row)">Update</button> 
+      
+      
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    
+    
+    
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[1, 2, 5, 100]"></mat-paginator>
+</div>

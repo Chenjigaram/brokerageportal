@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="col-md-6 col-md-offset-4">
+    <br>
+    <h4>Add Entry</h4>
+    <form name="form" #entryForm="ngForm">
+
+
+      <mat-form-field>
+        <mat-select id="match" name="match" placeholder="match" [(ngModel)]="entry.match" #match="ngModel" required>
+          <mat-option *ngFor="let match of allMatches" [value]="match">{{match.description}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="match.invalid && (match.dirty || match.touched)">
+        <mat-error *ngIf="match?.errors.required">Please Select Match</mat-error>
+      </div>
+      <br>
+
+
+      <mat-form-field>
+        <mat-select id="user" name="user" placeholder="user" [(ngModel)]="entry.user" #user="ngModel" required>
+          <mat-option *ngFor="let user of allUsers" [value]="user">{{user.userName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="user.invalid && (user.dirty || user.touched)">
+        <mat-error *ngIf="user?.errors.required">Please Select User</mat-error>
+      </div>
+      <br>
+
+      <mat-form-field>
+        <input id="matchRate" name="matchRate" matInput placeholder="match Rate" [(ngModel)]="entry.matchRate" #matchRate="ngModel"
+          required>
+      </mat-form-field>
+      <div *ngIf="matchRate.invalid && (matchRate.dirty || matchRate.touched)">
+        <mat-error *ngIf="matchRate?.errors.required">Please Provide Match Rate</mat-error>
+      </div>
+      <br>
+
+
+      <mat-form-field>
+        <mat-select id="entryType" name="entryType" placeholder="entryType" [(ngModel)]="entry.entryType" #entryType="ngModel" required>
+          <mat-option *ngFor="let x of entryTypes" [value]="x">{{x}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="entryType.invalid && (entryType.dirty || entryType.touched)">
+        <mat-error *ngIf="entryType?.errors.required">Please Select Entry Type</mat-error>
+      </div>
+      <br>
+
+
+
+      <mat-form-field>
+        <input id="betAmount" name="betAmount" matInput placeholder="betAmount" [(ngModel)]="entry.betAmount" #betAmount="ngModel" required>
+      </mat-form-field>
+      <div *ngIf="betAmount.invalid && (betAmount.dirty || betAmount.touched)">
+        <mat-error *ngIf="betAmount?.errors.required">Please Provide Bet Amount</mat-error>
+      </div>
+      <br>
+
+      <mat-form-field>
+        <input id="betTeam" name="betTeam" matInput placeholder="betTeam" [(ngModel)]="entry.betTeam" #betTeam="ngModel" required>
+      </mat-form-field>
+      <div *ngIf="betTeam.invalid && (betTeam.dirty || betTeam.touched)">
+        <mat-error *ngIf="betTeam?.errors.required">Please Provide Bet Team</mat-error>
+      </div>
+      <br>
+
+
+
+
+
+
+    </form>
+    <div class="button-row">
+
+      <button mat-raised-button [disabled]="!entryForm.form.valid" (click)="addEntry()" color="primary">Submit</button>
+    </div>
+  </div>
+
+</div>
+<br>

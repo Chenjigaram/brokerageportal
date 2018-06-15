@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>For {{data.userName}}</h1>
+<div mat-dialog-content>
+  <p>Requested Roles </p>
+  
+ <h3>{{data.role.roleName}}</h3>
+
+ <h3>{{data.mobileNumber}}</h3>
+ 
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary"  (click)="accept()">Accept</button>
+  <button mat-button color="warning"  (click)="reject()" >Reject</button>
+  <button mat-button color="danger"  (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+</div>
