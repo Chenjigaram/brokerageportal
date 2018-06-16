@@ -33,7 +33,9 @@ export class EntryComponent implements OnInit {
       );
 
       this.userService.getallUsers().subscribe(
-        response => this.allUsers = response
+        response => { this.allUsers = response;
+          console.log(this.allUsers);
+      }
         );
   }
 
