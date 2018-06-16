@@ -1,36 +1,72 @@
 
 <div class="" >
 
-    <mat-table [dataSource]="matreqUsers" matSort>
+
+
+    <table class="table">
+        <tr>
+          <td>
+            <mat-form-field>
+              <mat-select id="matchId" name="matchId" placeholder="Match" [(ngModel)]="matchId" #matchIds="ngModel"  required>
+                <mat-option *ngFor="let match of allMatches" [value]="match.matchId">{{match.description}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            </td>
+            <td><br></td>
+         <td>
+          <button mat-raised-button [disabled]="matchIds.invalid" (click)="getMatch()" color="primary" >Get</button>
+        
+         </td>
+        </tr>
+      </table>
+
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+    <mat-table [dataSource]="matchEntry" matSort>
   
-      <!-- first name Column -->
-      <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+      <!-- Match Decription Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Match Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.match.description}} </mat-cell>
       </ng-container>
   
       <!-- userName Column -->
       <ng-container matColumnDef="userName">
         <mat-header-cell *matHeaderCellDef mat-sort-header> User Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <b>{{row.userName}}</b></mat-cell>
+        <mat-cell *matCellDef="let row"> <b>{{row.user.userName}}</b></mat-cell>
       </ng-container>
   
-      <!-- empId  Column -->
-      <ng-container matColumnDef="userId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> User ID </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.userId}} </mat-cell>
+      <!-- matchRate  Column -->
+      <ng-container matColumnDef="matchRate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Match Rate </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.matchRate}} </mat-cell>
       </ng-container>
   
-      <!-- accountStatus Column -->
-      <ng-container matColumnDef="accountStatus">
-        <mat-header-cell *matHeaderCellDef> Accept/Reject </mat-header-cell>
-        <mat-cell *matCellDef="let row"> 
-        
-        <button mat-raised-button color="primary"  (click)="openDialog(row)">Update</button> 
-        
-        
-        </mat-cell>
-      </ng-container>
+      <ng-container matColumnDef="entryType">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Entry Type </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.entryType}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="betAmount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Entry Type </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.betAmount}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="betTeam">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Bet Team  </mat-header-cell>
+              <mat-cell *matCellDef="let row"> {{row.betTeam}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="matchAmount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Match Amount  </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.matchAmount}} </mat-cell>
+              </ng-container>
+  
+
+
+     
   
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;">
@@ -40,5 +76,5 @@
       </mat-row>
     </mat-table>
   
-    <mat-paginator [pageSizeOptions]="[1, 2, 5, 100]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[1, 5, 10, 100]"></mat-paginator>
   </div>

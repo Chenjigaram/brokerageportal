@@ -7,6 +7,7 @@ import { Entries } from '../beans/entriesBean';
 import { Message } from '../beans/messageBean';
 import { Match } from '../beans/matchBean';
 import { DialogComponent } from '../dialog/dialog.component';
+import { MatchService } from '../services/matchService';
 
 @Component({
   selector: 'app-view-entry',
@@ -20,19 +21,23 @@ export class ViewEntryComponent implements OnInit {
   allMatches: Match[];
   messageResponse: Message;
   matchId: number;
-  displayedColumns = ['description', 'userName', 'matchRate', 'entryType', 'betAmount', 'betTeam'];
+  displayedColumns = ['description', 'userName', 'matchRate', 'entryType', 'betAmount', 'betTeam', 'matchAmount'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   matchEntry: MatTableDataSource<Entries>;
 
-  constructor(private entriesService: EntriesService , public dialog: MatDialog , private router: Router,
+  constructor(private entriesService: EntriesService, private matchService: MatchService, public dialog: MatDialog , private router: Router,
     private userService: UserService) {
 
   }
 
+
+
   ngOnInit() {
 
-    this.matchentries();
+    this.matchService.getMatches().subscribe(
+      response => this.allMatches = response
+      );
 
   }
 
@@ -52,7 +57,7 @@ export class ViewEntryComponent implements OnInit {
 
   matchentries() {
 
-    if ( !this.userService.roleNames.includes('STANDARD_USER') ) {
+    if ( this.userService.roleNames.includes('STANDARD_USER') ) {
     this.entriesService. getEntriesByMatchAndUserName(this.matchId, this.userService.username).subscribe(
       response => {
       this.matchEntries = response;
@@ -85,6 +90,11 @@ export class ViewEntryComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.matchEntry.filter = filterValue;
+  }
+
+  getMatch() {
+
+    this.matchentries();
   }
 
 

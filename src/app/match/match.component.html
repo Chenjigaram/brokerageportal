@@ -62,7 +62,7 @@
           <tr>
             <td>
               <mat-form-field>
-                <mat-select id="matchId" name="matchId" placeholder="Roles" [(ngModel)]="matchId" #matchIds="ngModel"  required>
+                <mat-select id="matchId" name="matchId" placeholder="Match" [(ngModel)]="matchId" #matchIds="ngModel"  required>
                   <mat-option *ngFor="let match of allMatches" [value]="match.matchId">{{match.description}}</mat-option>
                 </mat-select>
               </mat-form-field>

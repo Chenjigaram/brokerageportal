@@ -40,7 +40,7 @@ export class EntriesService {
    }
   getEntriesByMatchAndUserName(matchId: number , userName: string): Observable<Entries[]> {
     console.log('test');
-    return this.http.get(REST_URL + 'entries/user/' + userName + '/match' + matchId).pipe(map(resp => resp as Entries[]));
+    return this.http.get(REST_URL + 'entries/user/' + userName + '/match/' + matchId).pipe(map(resp => resp as Entries[]));
   }
 
   getEntriesByUser(userName: string): Observable<Entries[]> {
